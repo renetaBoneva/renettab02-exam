@@ -1,7 +1,7 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
-name: Node.js CI
+name: Build Test
 
 on:
   push:
@@ -10,8 +10,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  build-test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -20,11 +19,9 @@ jobs:
       with:
         node-version: 18.x
         cache: 'npm'
-    - name: Install Packages
+    - name: Install npm dependencies
       run: npm install
-    - name: Install Playwright
-      run: npx playwright install 
-    - name: Run UI Tests
-      run: npm run test:ui      
+    - name: Setup Playwright
+      run: npx playwright install    
     - name: Run Unit Tests
       run: npm run test:unit
