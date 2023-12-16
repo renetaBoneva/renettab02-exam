@@ -39,6 +39,7 @@ jobs:
         run: sleep 120
   
   run-ui-test:
+    needs: deploy
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
